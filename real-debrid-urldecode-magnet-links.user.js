@@ -71,3 +71,26 @@
     inpMagnet.value = str;
   });
 })();
+
+// function transform(clip) {
+//   const rDecodeURI = (uri, dUri = decodeURIComponent(uri)) =>
+//     uri === dUri ? dUri : rDecodeURI(dUri);
+//   const rDecodeURIComponent = (
+//     uriComponent,
+//     dUriComponent = decodeURIComponent(uriComponent),
+//   ) =>
+//     uriComponent === dUriComponent
+//       ? dUriComponent
+//       : rDecodeURIComponent(dUriComponent);
+//   const str = clip.text;
+//   const trimmed = str.trim();
+//   if (!trimmed.startsWith('magnet:')) return str;
+//   const decoded = rDecodeURI(trimmed);
+//   const [protocol, query] = decoded.split('?');
+//   const components = query.split('&').map(component => {
+//     const [key, value] = component.split('=');
+//     const returnValue = rDecodeURIComponent(value);
+//     return `${key}=${returnValue}`;
+//   });
+//   return `${protocol}?${components.join('&')}`;
+// }
