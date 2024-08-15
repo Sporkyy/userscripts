@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mylar - Ultron Import Checkbox Ticker
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.06.12.0
 // @description  Toggle import results by status in Mylar Ultron import page
 // @author       Sporkyy

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Reddit - Redirect to Old Reddit
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.06.18.0
 // @description	 Redirects new Reddit to old Reddit
 // @author       Sporkyy

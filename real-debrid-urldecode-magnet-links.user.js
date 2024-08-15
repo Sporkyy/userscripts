@@ -12,17 +12,19 @@
 
 (function () {
   'use strict';
+
   const qs = (sel, ctx = document) => ctx.querySelector(sel);
+
   const inpMagnet = qs('input[name="magnet"]');
-  const rDecodeURI = (uri, dUri = decodeURIComponent(uri)) =>
-    uri === dUri ? dUri : rDecodeURI(dUri);
-  const rDecodeURIComponent = (
-    uriComponent,
-    dUriComponent = decodeURIComponent(uriComponent),
-  ) =>
-    uriComponent === dUriComponent
+
+  const rDecodeURI = uri =>
+    (dUri => (uri === dUri ? dUri : rDecodeURI(dUri)))(decodeURIComponent(uri));
+
+  const rDecodeURIComponent = uriComponent => dUriComponent =>
+    (uriComponent === dUriComponent
       ? dUriComponent
-      : rDecodeURIComponent(dUriComponent);
+      : rDecodeURIComponent(dUriComponent))(decodeURIComponent(uriComponent));
+
   const base64Decode = str => {
     let clearText = '';
     let chr1, chr2, chr3;
@@ -50,7 +52,9 @@
     clearText = uTF8Decode(clearText);
     return clearText;
   };
+
   const uTF8Decode = str => decodeURIComponent(escape(str));
+
   const isBase64Encoded = str =>
     new RegExp(
       // prettier-ignore
@@ -66,19 +70,26 @@
         '$',                       // End of input,
       ].join(''),
     ).test(str);
+
   inpMagnet.addEventListener('change', function () {
     let str = inpMagnet.value.trim();
+
+    if (str.includes('?url=')) {
+      str = decodeURIComponent(str.split('?url=')[1]);
+    }
+
     if (isBase64Encoded(str)) {
       str = base64Decode(str);
     }
-    // str = recUriDecCom(str);
+
     const decoded = rDecodeURI(str);
-    const [protocol, query] = decoded.split('?');
+    const [protocol, query] = decoded.split(':?');
     const components = query.split('&').map(component => {
       const [key, value] = component.split('=');
       const returnValue = rDecodeURIComponent(value);
       return `${key}=${returnValue}`;
     });
-    inpMagnet.value = `${protocol}?${components.join('&')}`;
+
+    inpMagnet.value = `${protocol}:?${components.join('&')}`;
   });
 })();

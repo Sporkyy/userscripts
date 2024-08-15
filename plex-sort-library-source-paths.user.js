@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Plex - Sort Libray Source Paths
-// @namespace   https://github.com/Sporkyy/
+// @namespace   https://github.com/Sporkyy/userscripts
 // @version     2024.06.14.7
 // @description Sorts the paths to the folders in the library
 // @author      Sporkyy

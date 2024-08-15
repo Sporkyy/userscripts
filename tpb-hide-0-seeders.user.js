@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TPB - Hide 0 Seeders
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.02.07
 // @description  Hide results with 0 seeders
 // @author       Sporkyy

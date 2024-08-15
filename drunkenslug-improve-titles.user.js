@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DrunkenSlug - Improve Titles
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.02.15
 // @description  Improves tht titles of pages on DrunkenSlug
 // @author       Sporkyy

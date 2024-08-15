@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mylar - Automatically Generate series.json
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.02.18
 // @description  Automatically generate missing series.json files
 // @author       Sporkyy

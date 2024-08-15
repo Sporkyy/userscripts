@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Mylar - Reload on Error
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.02.06
 // @description	 Reloads the page if Mylar throws an error
 // @author       Sporkyy

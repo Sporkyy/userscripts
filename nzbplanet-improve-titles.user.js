@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         NzbPlanet - Improve Titles
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2024.02.15
 // @description  Gives the pages on NzbPlanet.net meaningful titles
 // @author       Sporkyy

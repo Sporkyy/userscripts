@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Reddit - RES - Galleries to Clipboard
-// @namespace    https://github.com/Sporkyy/
+// @namespace    https://github.com/Sporkyy/userscripts
 // @version      2014.02.07
 // @description	 Copies gallery URLs to clipboard
 // @author       Sporkyy
