@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name        Real-Debrid URL Decode Magnet Links
-// @namespace   https://github.com/Sporkyy/
+// @namespace   https://github.com/Sporkyy/userscripts
 // @match       https://real-debrid.com/torrents*
 // @grant       none
-// @version     2024.04.04.02
+// @version     2024.08.15.0
 // @author      Sporkyy
 // @description Fully decode magnet links in Real-Debrid magnet input field
 // @run-at      document-idle
@@ -14,11 +14,15 @@
   'use strict';
   const qs = (sel, ctx = document) => ctx.querySelector(sel);
   const inpMagnet = qs('input[name="magnet"]');
-  const recUriDecCom = uriCom => {
-    const dec = decodeURIComponent(uriCom);
-    if ((uriCom = dec)) return uriCom;
-    return recUriDecCom(dec);
-  };
+  const rDecodeURI = (uri, dUri = decodeURIComponent(uri)) =>
+    uri === dUri ? dUri : rDecodeURI(dUri);
+  const rDecodeURIComponent = (
+    uriComponent,
+    dUriComponent = decodeURIComponent(uriComponent),
+  ) =>
+    uriComponent === dUriComponent
+      ? dUriComponent
+      : rDecodeURIComponent(dUriComponent);
   const base64Decode = str => {
     let clearText = '';
     let chr1, chr2, chr3;
@@ -67,30 +71,14 @@
     if (isBase64Encoded(str)) {
       str = base64Decode(str);
     }
-    str = recUriDecCom(str);
-    inpMagnet.value = str;
+    // str = recUriDecCom(str);
+    const decoded = rDecodeURI(str);
+    const [protocol, query] = decoded.split('?');
+    const components = query.split('&').map(component => {
+      const [key, value] = component.split('=');
+      const returnValue = rDecodeURIComponent(value);
+      return `${key}=${returnValue}`;
+    });
+    inpMagnet.value = `${protocol}?${components.join('&')}`;
   });
 })();
-
-// function transform(clip) {
-//   const rDecodeURI = (uri, dUri = decodeURIComponent(uri)) =>
-//     uri === dUri ? dUri : rDecodeURI(dUri);
-//   const rDecodeURIComponent = (
-//     uriComponent,
-//     dUriComponent = decodeURIComponent(uriComponent),
-//   ) =>
-//     uriComponent === dUriComponent
-//       ? dUriComponent
-//       : rDecodeURIComponent(dUriComponent);
-//   const str = clip.text;
-//   const trimmed = str.trim();
-//   if (!trimmed.startsWith('magnet:')) return str;
-//   const decoded = rDecodeURI(trimmed);
-//   const [protocol, query] = decoded.split('?');
-//   const components = query.split('&').map(component => {
-//     const [key, value] = component.split('=');
-//     const returnValue = rDecodeURIComponent(value);
-//     return `${key}=${returnValue}`;
-//   });
-//   return `${protocol}?${components.join('&')}`;
-// }
