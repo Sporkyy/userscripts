@@ -3,7 +3,7 @@
 // @namespace   https://github.com/Sporkyy/userscripts
 // @match       https://real-debrid.com/torrents*
 // @grant       none
-// @version     2024.08.16.0
+// @version     2024.08.16.1
 // @author      Sporkyy
 // @description Fully decode magnet links in Real-Debrid magnet input field
 // @run-at      document-idle
@@ -13,15 +13,17 @@
 (function () {
   'use strict';
 
+  // MARK: Helper Functions
+
   const qs = (sel, ctx = document) => ctx.querySelector(sel);
 
-  const inpMagnet = qs('input[name="magnet"]');
-
+  // Recursive decodeURI function
   const rDecodeURI = function (uri) {
     const dUri = decodeURIComponent(uri);
     return uri === dUri ? dUri : rDecodeURI(dUri);
   };
 
+  // Recursive decodeURIComponent function
   const rDecodeURIComponent = function (uriComponent) {
     const dUriComponent = decodeURIComponent(uriComponent);
     return uriComponent === dUriComponent
@@ -29,7 +31,8 @@
       : rDecodeURIComponent(dUriComponent);
   };
 
-  const base64Decode = str => {
+  // This makes sense, but I didn't write it
+  const decodeBase64 = str => {
     let clearText = '';
     let chr1, chr2, chr3;
     let enc1, enc2, enc3, enc4;
@@ -53,12 +56,14 @@
         clearText = clearText + String.fromCharCode(chr3);
       }
     }
-    clearText = uTF8Decode(clearText);
+    clearText = decodeUTF8(clearText);
     return clearText;
   };
 
-  const uTF8Decode = str => decodeURIComponent(escape(str));
+  // TODO: Replace the deprecated escape() function
+  const decodeUTF8 = str => decodeURIComponent(escape(str));
 
+  // I did nothting to test this code, but it works
   const isBase64Encoded = str =>
     new RegExp(
       // prettier-ignore
@@ -75,28 +80,40 @@
       ].join(''),
     ).test(str);
 
+  // MARK: Main
+
+  const inpMagnet = qs('input[name="magnet"]');
+
   inpMagnet.addEventListener('change', function () {
     let str = inpMagnet.value.trim();
 
+    // Because a certain forum likes to encode magnet links in base64
+    if (isBase64Encoded(str)) {
+      str = decodeBase64(str);
+    }
+
+    // For MyCloud links, but generalized
     if (str.includes('?url=')) {
       str = decodeURIComponent(str.split('?url=')[1]);
     }
 
-    if (isBase64Encoded(str)) {
-      str = base64Decode(str);
-    }
-
+    // Because the links from NZBHydra2 are sometimes encoded twice
     const decoded = rDecodeURI(str);
     // console.log('decoded:', decoded);
+
     const [protocol, query] = decoded.split(':?');
     // console.log('protocol:', protocol);
     // console.log('query:', query);
+
+    // I think there's no harm in decoding every parameter
     const components = query.split('&').map(component => {
       const [key, value] = component.split('=');
+      // Again, because the links from NZBHydra2 are sometimes encoded twice
       const returnValue = rDecodeURIComponent(value);
       return `${key}=${returnValue}`;
     });
 
+    // When the form is submitted, anything needing to be encoded will be
     inpMagnet.value = `${protocol}:?${components.join('&')}`;
   });
 })();
