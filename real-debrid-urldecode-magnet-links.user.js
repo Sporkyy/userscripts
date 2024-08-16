@@ -17,13 +17,17 @@
 
   const inpMagnet = qs('input[name="magnet"]');
 
-  const rDecodeURI = uri =>
-    (dUri => (uri === dUri ? dUri : rDecodeURI(dUri)))(decodeURIComponent(uri));
+  const rDecodeURI = function (uri) {
+    const dUri = decodeURIComponent(uri);
+    return uri === dUri ? dUri : rDecodeURI(dUri);
+  };
 
-  const rDecodeURIComponent = uriComponent => dUriComponent =>
-    (uriComponent === dUriComponent
+  const rDecodeURIComponent = function (uriComponent) {
+    const dUriComponent = decodeURIComponent(uriComponent);
+    return uriComponent === dUriComponent
       ? dUriComponent
-      : rDecodeURIComponent(dUriComponent))(decodeURIComponent(uriComponent));
+      : rDecodeURIComponent(dUriComponent);
+  };
 
   const base64Decode = str => {
     let clearText = '';
@@ -83,7 +87,10 @@
     }
 
     const decoded = rDecodeURI(str);
+    // console.log('decoded:', decoded);
     const [protocol, query] = decoded.split(':?');
+    // console.log('protocol:', protocol);
+    // console.log('query:', query);
     const components = query.split('&').map(component => {
       const [key, value] = component.split('=');
       const returnValue = rDecodeURIComponent(value);
