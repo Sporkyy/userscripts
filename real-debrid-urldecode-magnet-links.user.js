@@ -3,7 +3,7 @@
 // @namespace   https://github.com/Sporkyy/userscripts
 // @match       https://real-debrid.com/torrents*
 // @grant       none
-// @version     2024.08.15.0
+// @version     2024.08.16.0
 // @author      Sporkyy
 // @description Fully decode magnet links in Real-Debrid magnet input field
 // @run-at      document-idle
