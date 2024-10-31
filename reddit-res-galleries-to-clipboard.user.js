@@ -14,19 +14,19 @@
 
 (() => {
   'use strict';
-  const aqsa = (s, c = document) => [...c.querySelectorAll(s)];
+
+  // MARK: Functions
+  const qsa = (sel, ctx = document) => ctx.querySelectorAll(sel);
+  const aqsa = (sel, ctx = document) => [...qsa(sel, ctx)];
+
   const els = aqsa('a.title[href*="reddit.com/gallery/"]');
   // console.log(els);
-  const urls = els.map(e => e.href);
+  const urls = [...Set(els.map(e => e.href))];
   // console.log(urls);
-  GM_registerMenuCommand(
-    'Copy Gallery URLs',
-    () => {
-      GM_setClipboard(urls.join(' \n '), 'text');
-      // console.log(urls.length);
-    },
-    () => {
-      console.log(`${urls.length} gallery URLs copied`);
-    },
-  );
+
+  // MARK: Menu Commands
+  GM_registerMenuCommand('Copy Gallery URLs', () => {
+    GM_setClipboard(urls.join(' \n '), 'text');
+    console.log(`Copied ${urls.length} urls to clipboard`);
+  });
 })();
