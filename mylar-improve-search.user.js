@@ -5,8 +5,9 @@
 // @description  Remove problematical words from queries
 // @author       Sporkyy
 // @match        *://localhost:8090/*
-// @match        *://macmini.lumpatio.us:8090/*
-// @match        *://mylar.lumpatio.us/*
+// @match        *://*.local:8090/*
+// @match        *://mylar.*/*
+// @match        *://*/mylar/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=mylarcomics.com
 // @grant        none
 // @run-at       document-idle
@@ -20,15 +21,15 @@
 
   inpSearch.addEventListener('change', () => {
     let newVal = inpSearch.value;
-    newVal = newVal.replace(/\./, ' ');
-    newVal = newVal.replace(/\:/, ' ');
-    newVal = newVal.replace(/\&/, ' ');
-    newVal = newVal.replace(/\-/, ' ');
-    newVal = newVal.replace(/\band\b/, ' ');
-    newVal = newVal.replace(/\bthe\b/, ' ');
-    newVal = newVal.replace(/\bversus\b/, ' ');
-    newVal = newVal.replace(/\bvs\b/, ' ');
-    newVal = newVal.replace(/\s{2,}/g, ' ');
+    newVal = newVal.replaceAll('.', ' ');
+    newVal = newVal.replaceAll(':', ' ');
+    newVal = newVal.replaceAll('&', ' ');
+    newVal = newVal.replaceAll('-', ' ');
+    newVal = newVal.replaceAll(/\band\b/g, ' ');
+    newVal = newVal.replaceAll(/\bthe\b/g, ' ');
+    newVal = newVal.replaceAll(/\bversus\b/g, ' ');
+    newVal = newVal.replaceAll(/\bvs\b/g, ' ');
+    newVal = newVal.replaceAll(/\s{2,}/g, ' ');
     newVal = newVal.trim();
     inpSearch.value = newVal;
   });

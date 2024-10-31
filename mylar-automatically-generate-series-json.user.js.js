@@ -4,9 +4,10 @@
 // @version      2024.02.18
 // @description  Automatically generate missing series.json files
 // @author       Sporkyy
-// @match        *://localhost:8090/comicDetails*
-// @match        *://macmini.lumpatio.us:8090/comicDetails*
-// @match        *://mylar.lumpatio.us/comicDetails*
+// @match        *://localhost:8090/*
+// @match        *://*.local:8090/*
+// @match        *://mylar.*/*
+// @match        *://*/mylar/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=mylarcomics.com
 // @grant        none
 // @run-at       document-idle
@@ -26,13 +27,13 @@
 
   // If the page didn't load correctly, give up
   if (!hasSH) {
-    console.log('No Series Header found; doing nothing');
+    console.log('🛑 Aborting; no Series Header found');
     return;
   } else if (hasSJ) {
-    console.log('Found `series.json`; doing nothing');
+    console.log('🛑 Aborting; found `series.json`');
     return;
   } else if (isLoading) {
-    console.log('Already loading info; doing nothing');
+    console.log('🛑 Aborting; already loading info');
     return;
   }
 

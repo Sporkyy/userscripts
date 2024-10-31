@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name        Real-Debrid URL Decode Magnet Links
-// @namespace   https://github.com/Sporkyy/userscripts
-// @match       https://real-debrid.com/torrents*
-// @grant       none
-// @version     2024.08.16.1
-// @author      Sporkyy
-// @description Fully decode magnet links in Real-Debrid magnet input field
-// @run-at      document-idle
-// @icon        https://www.google.com/s2/favicons?sz=64&domain=real-debrid.com
+// @name         Real-Debrid URL Decode Magnet Links
+// @namespace    https://github.com/Sporkyy/userscripts
+// @match        https://real-debrid.com/torrents*
+// @grant        none
+// @version      2024.08.16.1
+// @author       Sporkyy
+// @description  Fully decode magnet links in Real-Debrid magnet input field
+// @run-at       document-idle
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=real-debrid.com
 // ==/UserScript==
 
 (function () {

@@ -5,8 +5,9 @@
 // @description  Toggle import results by status in Mylar Ultron import page
 // @author       Sporkyy
 // @match        *://localhost:8090/*
-// @match        *://macmini.lumpatio.us:8090/*
-// @match        *://mylar.lumpatio.us/*
+// @match        *://*.local:8090/*
+// @match        *://mylar.*/*
+// @match        *://*/mylar/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=mylarcomics.com
 // @grant        GM_registerMenuCommand
 // @run-at       document-idle

@@ -1,13 +1,14 @@
 // ==UserScript==
-// @name        Plex - Sort Libray Source Paths
-// @namespace   https://github.com/Sporkyy/userscripts
-// @version     2024.06.14.7
-// @description Sorts the paths to the folders in the library
-// @author      Sporkyy
-// @match       *://*.*:32400/*
-// @match       *://plex.*.*/*
-// @match       *://*.*/plex/*
-// @icon        https://www.google.com/s2/favicons?sz=64&domain=www.plex.tv
+// @name         Plex - Sort Libray Source Paths
+// @namespace    https://github.com/Sporkyy/userscripts
+// @version      2024.06.14.7
+// @description  Sorts the paths to the folders in the library
+// @author       Sporkyy
+// @match        *://localhost:32400/*
+// @match        *://*.local:32400/*
+// @match        *://plex.*/*
+// @match        *://*/plex/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=www.plex.tv
 // @grant        GM_registerMenuCommand
 // @run-at       document-idle
 // ==/UserScript==
