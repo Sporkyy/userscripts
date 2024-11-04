@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mylar - Improve Search
 // @namespace    https://github.com/Sporkyy/userscripts
-// @version      2024.04.06.13.0
+// @version      2024.11.04
 // @description  Remove problematical words from queries
 // @author       Sporkyy
 // @match        *://localhost:8090/*

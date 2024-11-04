@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mylar - Improve Titles
 // @namespace    https://github.com/Sporkyy/userscripts
-// @version      2024.02.15
+// @version      2024.11.04
 // @description  Move Mylar to the end of the title
 // @author       Sporkyy
 // @match        *://localhost:8090/*
