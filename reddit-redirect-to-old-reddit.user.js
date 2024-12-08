@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         Reddit - Redirect to Old Reddit
 // @namespace    https://github.com/Sporkyy/userscripts
-// @version      2024.06.18.0
+// @version      2024.12.08.3
 // @description	 Redirects new Reddit to old Reddit
 // @author       Sporkyy
 // @match        *://www.reddit.com/*
-// @exclude      *://old.reddit.com/*
 // @exclude      *://www.reddit.com/appeals/*,
 // @exclude      *://www.reddit.com/community-points/*
 // @exclude      *://www.reddit.com/gallery/*
@@ -23,9 +22,8 @@
 (() => {
   'use strict';
 
-  const winLoc = window.location;
-  const path = winLoc.href.split('reddit.com/', 1)[1];
-  const newLocation = `https://old.reddit.com/${path}`;
+  const href = window.location.href;
+  const newHref = href.replace('www.reddit.com', 'old.reddit.com');
 
-  winLoc.replace(newLocation);
+  window.location.replace(newHref);
 })();
