@@ -31,7 +31,7 @@
   tdSeeders
     .map(td => [toInt(td), closestTr(td)])
     .filter(([cntSeeders]) => 0 === cntSeeders)
-    .forEach(([, tr]) => hide);
+    .forEach(([, tr]) => hide(tr));
 })();
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
