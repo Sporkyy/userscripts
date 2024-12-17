@@ -3,7 +3,7 @@
 // @namespace    https://github.com/Sporkyy/userscripts
 // @match        https://real-debrid.com/torrents*
 // @grant        none
-// @version      2024.08.16.1
+// @version      2024.12.17.0
 // @author       Sporkyy
 // @description  Fully decode magnet links in Real-Debrid magnet input field
 // @run-at       document-idle
@@ -19,7 +19,8 @@
 
   // Recursive decodeURI function
   const rDecodeURI = function (uri) {
-    const dUri = decodeURIComponent(uri);
+    // const dUri = decodeURIComponent(uri);
+    const dUri = decodeURI(uri); // I probably meant to use decodeURI
     return uri === dUri ? dUri : rDecodeURI(dUri);
   };
 
