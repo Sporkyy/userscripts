@@ -3,7 +3,7 @@
 // @namespace    https://github.com/Sporkyy/userscripts
 // @match        https://real-debrid.com/torrents*
 // @grant        none
-// @version      2025.01.29.0
+// @version      2025.02.01.0
 // @author       Sporkyy
 // @description  Highlight duplicate downloads (by the download URL).
 // @run-at       document-idle
@@ -56,6 +56,8 @@
   const urlElPairs = downloadTextareas.map(el => [el.value, el]);
   const elsByUrlMap = new Map();
 
+  console.log(urlElPairs);
+
   urlElPairs.forEach(([url, el]) => {
     // Skip empty URLs
     if (!url || 0 === url.length) return;
@@ -66,15 +68,19 @@
     }
   });
 
-  for ([url, els] in elsByUrlMap.entries() || []) {
-    if (els.length > 1) {
+  console.log(elsByUrlMap);
+
+  for (const [url, els] of elsByUrlMap.entries() || []) {
+    if (1 < els.length) {
       // els.forEach(el => (el.style.backgroundColor = 'red'));
-      backgroundColor = stringToColour(url);
-      color = getContrastingColor(backgroundColor);
-      els.forEach(el => {
+      const backgroundColor = stringToColour(url);
+      console.log(backgroundColor);
+      const color = getContrastingColor(backgroundColor);
+      console.log(color);
+      for (const el of els) {
         el.style.backgroundColor = backgroundColor;
         el.style.color = color;
-      });
+      }
     }
   }
 })();
